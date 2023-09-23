@@ -6,7 +6,7 @@ import QuestionCard from './components/questionCard'
 // types
 import { difficulty, questionState } from './services/Api';
 
-type answerObject = {
+export type answerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -55,14 +55,19 @@ const App = () => {
         correct,
         correctAnswer: questions[number].correct_answer,
       }
-
       setUserAnswers(prevState => [...prevState, answerObject])
-
     }
   }
 
   const nextQuestion = () => {
-    
+      // move onto next question
+      const nextQuestion = number + 1
+
+      if(nextQuestion === TOTAL_QUESTIONS){
+          setGameOver(true);
+      } else {
+        setNumber(nextQuestion)
+      }
   }
 
   return (
@@ -72,7 +77,7 @@ const App = () => {
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <button className='start-quiz-button' onClick={startTrivia}>Start Quiz</button>
           ) : null}
-          {!gameOver ? <p className='score'>Score: </p> : null}
+          {!gameOver ? <p className='score'>Score: {score}</p> : null}
           {loading && <p>Loading Questions...</p>}
 
           {!loading && !gameOver && (
@@ -87,7 +92,7 @@ const App = () => {
           )}
           {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 
             ? (
-              <button className='next-question'>Next Question</button>
+              <button className='next-question' onClick={nextQuestion}>Next Question</button>
             ) : null
           }
      </div>
