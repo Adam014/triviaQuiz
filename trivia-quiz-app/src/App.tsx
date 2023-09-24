@@ -2,9 +2,11 @@ import { MouseEvent, useState } from 'react'
 
 import { fetchQuizQuestions } from './services/Api';
 //components
-import QuestionCard from './components/questionCard'
+import QuestionCard from './components/QuestionCard'
 // types
 import { difficulty, questionState } from './services/Api';
+
+import Underline from './images/underline.jpg';
 
 export type answerObject = {
   question: string;
@@ -73,6 +75,7 @@ const App = () => {
   return (
     <>
      <div className='App'>
+        <div className='quiz-container'>
           <h1>Trivia Web App Quiz</h1>
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <button className='start-quiz-button' onClick={startTrivia}>Start Quiz</button>
@@ -90,11 +93,14 @@ const App = () => {
                 callback={checkAnswer}
             />
           )}
-          {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 
-            ? (
-              <button className='next-question' onClick={nextQuestion}>Next Question</button>
-            ) : null
-          }
+          <div className='next-container'>
+            {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 
+              ? (
+                <button className='next-question' onClick={nextQuestion}>→</button>
+              ) : null
+            }
+          </div>
+        </div>
      </div>
     </>
   )
