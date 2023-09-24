@@ -3,10 +3,9 @@ import { MouseEvent, useState } from 'react'
 import { fetchQuizQuestions } from './services/Api';
 //components
 import QuestionCard from './components/QuestionCard'
+import Confetti from 'react-confetti';
 // types
 import { difficulty, questionState } from './services/Api';
-
-import Underline from './images/underline.jpg';
 
 export type answerObject = {
   question: string;
@@ -75,6 +74,7 @@ const App = () => {
   return (
     <>
      <div className='App'>
+        {/* { // pridat confetti compontn } */}
         <div className='quiz-container'>
           <h1>Trivia Web App Quiz</h1>
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
