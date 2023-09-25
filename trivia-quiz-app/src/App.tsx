@@ -75,12 +75,13 @@ const App = () => {
     <>
      <div className='App'>
         {/* { // pridat confetti compontn } */}
+        {userAnswers.length === TOTAL_QUESTIONS ? (<Confetti />) : null}
         <div className='quiz-container'>
+          {!gameOver ? <p className='score'>Score: {score}</p> : null}
           <h1>Trivia Web App Quiz</h1>
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <button className='start-quiz-button' onClick={startTrivia}>Start Quiz</button>
           ) : null}
-          {!gameOver ? <p className='score'>Score: {score}</p> : null}
           {loading && <p>Loading Questions...</p>}
 
           {!loading && !gameOver && (

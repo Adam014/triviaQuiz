@@ -12,7 +12,7 @@ type questionProps = {
 
 const questionCard: FC<questionProps> = ({question, answers, callback, userAnswer, questionNr, totalQuestions}) => {
     return (
-        <div>
+        <div className="quiz">
             <p className="number">Question: {questionNr} / {totalQuestions}</p>
             <p className="question" dangerouslySetInnerHTML={{__html: question}}></p>
             <div className="answers">   
