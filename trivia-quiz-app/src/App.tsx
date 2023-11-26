@@ -7,6 +7,8 @@ import Confetti from 'react-confetti';
 // types
 import { difficulty, questionState } from './services/Api';
 
+import GitHubButton from 'react-github-btn';
+
 export type answerObject = {
   question: string;
   answer: string;
@@ -76,6 +78,9 @@ const App = () => {
      <div className='App'>
         {/* { // pridat confetti compontn } */}
         {userAnswers.length === TOTAL_QUESTIONS ? (<Confetti />) : null}
+        <div className='github-btn'>
+          <GitHubButton href="https://github.com/Adam014/triviaQuiz" data-size="large" data-show-count="true">Star this project on Github</GitHubButton>
+        </div>
         <div className='quiz-container'>
           {!gameOver ? <p className='score'>Score: {score}</p> : null}
           <h1>Trivia Web App Quiz</h1>
